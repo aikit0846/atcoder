@@ -23,13 +23,13 @@ int main()
                 dp[i][i + 1] = 2;
             }
         }
-        for (len = 2; len < n; len += 2) {
-            for (i = 0; i < n - len; i++) {
+        for (len = 3; len <= n; len++) {
+            for (i = 0; i <= n - len; i++) {
                 if (std::abs(w[i] - w[i + len - 1]) <= 1 && dp[i + 1][i + len - 2] == len - 2) {
                     dp[i][i + len - 1] = len;
                 } else {
-                    for (j = i; j + 1 < i + len; j++) {
-                        dp[i][i + len - 1] = std::max(dp[i][i + len - 1], dp[i][j - 1] + dp[j + 2][i + len - 1]);
+                    for (j = i; j <= i + len - 2; j++) {
+                        dp[i][i + len - 1] = std::max(dp[i][i + len - 1], dp[i][j] + dp[j + 1][i + len - 1]);
                     }
                 }
             }
